@@ -34,8 +34,4 @@ export class PdfService {
 
     return name;
   }
-
-  findAll() {
-    return `This action returns all pdf`;
-  }
 }

@@ -1,8 +1,6 @@
 # PDF Upload, OpenAI API summary generation and History display
 
-Technologies: Nest.js, Typescript, Supabase and Supabase Storage, OpenAI API
-
-> NOTE: .env variables were intentionally included in the repository for checker. FYI, .env should not be included in the repository.
+Technologies: Nest.js, Typescript, Supabase and Supabase Storage, OpenAI API, FSD
 
 ## Local Project setup:
 

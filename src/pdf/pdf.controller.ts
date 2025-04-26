@@ -17,7 +17,7 @@ export class PdfController {
     private readonly llmService: LlmService,
     private readonly supabaseService: SupabaseService,
     private readonly pdfService: PdfService,
-  ) { }
+  ) {}
 
   @Post('upload')
   @UseInterceptors(FilesInterceptor('file'))
@@ -27,7 +27,6 @@ export class PdfController {
 
     const normalizedFileName = this.pdfService.handleFileName(
       file[0].originalname,
-      '.txt',
     );
     const recordData = await this.supabaseService.createStorageRecord(
       'public-bucket',

@@ -3,6 +3,7 @@ import {
   UseInterceptors,
   UploadedFiles,
   Post,
+  Get,
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 
@@ -16,7 +17,7 @@ export class PdfController {
     private readonly llmService: LlmService,
     private readonly supabaseService: SupabaseService,
     private readonly pdfService: PdfService,
-  ) {}
+  ) { }
 
   @Post('upload')
   @UseInterceptors(FilesInterceptor('file'))
@@ -42,5 +43,9 @@ export class PdfController {
     );
 
     return summarization;
+  }
+  @Get('history')
+  async getHistory() {
+    return await this.supabaseService.getLatestProccessedPDFsHistory();
   }
 }

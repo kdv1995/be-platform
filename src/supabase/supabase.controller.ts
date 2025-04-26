@@ -1,17 +1,10 @@
-import {
-  Controller,
-  Get,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SupabaseService } from './supabase.service';
 import { UpdateSupabaseDto } from './dto/update-supabase.dto';
 
 @Controller('supabase')
 export class SupabaseController {
-  constructor(private readonly supabaseService: SupabaseService) {}
+  constructor(private readonly supabaseService: SupabaseService) { }
 
   @Get()
   findAll() {

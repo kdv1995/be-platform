@@ -37,6 +37,8 @@ $ docker build -t be-platform .
 $ docker-compose up -d
 ```
 
+> If you need more info on Dockerfile and Docker Compose, please refer to the README.Docker.md
+
 ## Production deployment:
 
 - Sign up for a free account on [Koyeb](https://www.koyeb.com/)

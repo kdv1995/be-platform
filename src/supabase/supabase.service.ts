@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSupabaseDto } from './dto/create-supabase.dto';
 import { UpdateSupabaseDto } from './dto/update-supabase.dto';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { ConfigService } from '@nestjs/config';
@@ -92,6 +91,18 @@ export class SupabaseService {
 
   getFullPath(fullPath: string) {
     return `${this.SUPABASE_URL}/storage/v1/object/public/${fullPath}`;
+  }
+
+  async getLatestProccessedPDFsHistory() {
+    const { data, error } = await this.supabase
+      .from('documents')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(5);
+    if (error) {
+      throw new Error('Could not fetch history');
+    }
+    return data;
   }
 
   findAll() {

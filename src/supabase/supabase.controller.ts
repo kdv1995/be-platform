@@ -1,16 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SupabaseService } from './supabase.service';
-import { CreateSupabaseDto } from './dto/create-supabase.dto';
 import { UpdateSupabaseDto } from './dto/update-supabase.dto';
 
 @Controller('supabase')
 export class SupabaseController {
   constructor(private readonly supabaseService: SupabaseService) {}
-
-  @Post()
-  create(@Body() createSupabaseDto: CreateSupabaseDto) {
-    return this.supabaseService.create(createSupabaseDto);
-  }
 
   @Get()
   findAll() {
@@ -23,7 +24,10 @@ export class SupabaseController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSupabaseDto: UpdateSupabaseDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateSupabaseDto: UpdateSupabaseDto,
+  ) {
     return this.supabaseService.update(+id, updateSupabaseDto);
   }
 

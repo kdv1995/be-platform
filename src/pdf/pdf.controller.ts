@@ -17,12 +17,12 @@ export class PdfController {
     private readonly llmService: LlmService,
     private readonly supabaseService: SupabaseService,
     private readonly pdfService: PdfService,
-  ) {}
+  ) { }
 
   @Post('upload')
   @UseInterceptors(FilesInterceptor('file'))
   async uploadFile(@UploadedFiles() file: Array<Express.Multer.File>) {
-    const summarization =
+    const summary =
       (await this.llmService.summarization(file)) ?? 'No summary available';
 
     const normalizedFileName = this.pdfService.handleFileName(
@@ -31,7 +31,7 @@ export class PdfController {
     const recordData = await this.supabaseService.createStorageRecord(
       'public-bucket',
       normalizedFileName,
-      summarization,
+      summary,
     );
 
     const filePublicUrl = this.supabaseService.getFullPath(recordData.fullPath);
@@ -41,7 +41,7 @@ export class PdfController {
       normalizedFileName,
     );
 
-    return summarization;
+    return { summary };
   }
   @Get('history')
   async getHistory() {

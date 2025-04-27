@@ -41,7 +41,7 @@ export class PdfController {
       normalizedFileName,
     );
 
-    return { result: summary };
+    return summary;
   }
   @Get('history')
   async getHistory() {
